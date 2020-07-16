@@ -1,0 +1,42 @@
+# This file generated if you run "codecept init acceptance"
+
+# suite config
+suites:
+  acceptance:
+    actor: AcceptanceTester
+    path: .
+    modules:
+      enabled:
+        - WebDriver:
+          # this "nginx" is the name of nginx container where website running,
+          # you can replate with your website url, ex: http://google.com.
+          url: http://nginx
+
+          # this "chrome" is not chrome contaienr's name, but to indicate that we use chrome browser for test,
+          # will result as codeception will required selenium and chrome driver for test.
+          browser: chrome
+
+          host: '%SELENIUM_HOST%'
+          port: '%SELENIUM_PORT%'
+
+        - \Helper\Acceptance
+
+extensions:
+  enabled: [Codeception\Extension\RunFailed]
+
+params:
+  - .env  # don't forget this
+
+gherkin: []
+
+# additional paths
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  support: tests/_support
+  envs: tests/_envs
+
+settings:
+  shuffle: false
+  lint: true
